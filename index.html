@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CommitAI - AI-Powered Git Commit Messages</title>
+    <meta name="description" content="Generate concise, relevant Git commit messages with AI.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .container { background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 700px; width: 100%; text-align: center; }
+        h1 { color: #2c3e50; margin-bottom: 20px; }
+        textarea { width: calc(100% - 20px); height: 150px; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; resize: vertical; font-size: 0.9em; }
+        button { background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 1em; }
+        button:hover { background-color: #0056b3; }
+        #output { background-color: #e9ecef; padding: 15px; border-radius: 4px; margin-top: 20px; text-align: left; white-space: pre-wrap; word-break: break-word; min-height: 50px; }
+        .price { margin-top: 20px; font-size: 1.1em; color: #28a745; font-weight: bold; }
+        footer { margin-top: 30px; font-size: 0.8em; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 CommitAI</h1>
+        <p>Generate precise Git commit messages instantly.</p>
+        <textarea id="diffInput" placeholder="Paste your uncommitted code or diff here..."></textarea>
+        <button onclick="generateCommitMessage()">Suggest Commit Message</button>
+        <div id="output">Your AI-generated commit message will appear here.</div>
+        <p class="price">Unlock Unlimited Generations for a Month: $9.99</p>
+    </div>
+    <footer>
+        Made by APEX. Connect with us on <a href="https://twitter.com/buildonapex" target="_blank">Twitter</a>.
+    </footer>
+
+    <script>
+        async function generateCommitMessage() {
+            const input = document.getElementById('diffInput').value;
+            const outputDiv = document.getElementById('output');
+            outputDiv.textContent = 'Generating...';
+
+            try {
+                // In a real app, this would be an API call to your backend.
+                // For this example, we mock a response.
+                const mockResponse = await new Promise(resolve => setTimeout(() => {
+                    if (input.trim() === '') {
+                        resolve('Please paste some code/diff to generate a commit message.');
+                    } else if (input.includes('feat')) {
+                        resolve('feat: Implement new user authentication flow');
+                    } else if (input.includes('fix')) {
+                        resolve('fix: Resolve critical bug in payment processing');
+                    } else {
+                        resolve('chore: Update dependencies and refactor minor components');
+                    }
+                }, 1500));
+                outputDiv.textContent = mockResponse;
+            } catch (error) {
+                console.error('Error generating commit message:', error);
+                outputDiv.textContent = 'Failed to generate commit message. Please try again later.';
+            }
+        }
+    </script>
+</body>
+</html>
